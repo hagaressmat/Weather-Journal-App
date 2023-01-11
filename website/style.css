@@ -65,6 +65,8 @@ input{
 }
 
 button{
+    display: block;
+    margin-top: 20px;
     width: 400px;
     height: 100px;
     background: #3b4a6b;
