@@ -1,27 +1,43 @@
 body{
-    background: #fffff8;
+    background-image: url("download.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* box-shadow : 0 0 10px #ddd; */
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 #app{
-    display: grid;
-    grid-auto-rows: minmax(150px, auto);
-    /* grid-template-columns:  */
-    height:100vh;
-    background: #f23557;
-    color: #f0d43a;
+    height:100%; 
+    color: black;
     justify-content: center;
-    grid-gap: 1em;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 220px;
 }
 
-.holder{
-
+.container{
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 50%;
+    margin-top: -140px;
+    grid-gap: 150px; 
 }
-
+.box{
+}
 .entry{
     background: rgba(59, 74, 107, .4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 50%;
+    min-height: 40vh;
+    width: 40vh;
 }
 
 #entryHolder{
@@ -41,8 +57,16 @@ body{
 }
 
 .headline {
-
+    font-weight: bold;
+    color: black;
+    width: fit-content;
+    text-transform: uppercase;
+    margin: 35px auto 35px;
+    border: 2px solid white;
+    padding: 10px 20px;
+    font-size: 30px;
 }
+
 .title{
 
 }
@@ -58,7 +82,7 @@ input{
     height: 60px;
     width: 320px;
     background:#22b2da;
-    color: #f0d43a;
+    color: black;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
     border: none;
@@ -66,15 +90,16 @@ input{
 
 button{
     display: block;
-    margin-top: 20px;
-    width: 400px;
-    height: 100px;
+    width: 100%;
+    height: 80px;
+    padding: 15px;
     background: #3b4a6b;
-    color: #f0d43a;
-    font-size: 26px;
-    font-family: 'Oswald', sans-serif;
+    color: rgb(181, 181, 181);
+    font-weight: bold;
+    font-size: 20px;
     border: none;
-    box-shadow: 2px 4px 5px #444;
+    cursor: pointer;
+    transition: var(--main-transition);
 }
 h1{
     font-size: 36px;
@@ -82,8 +107,10 @@ h1{
 
 textarea{
     background:#22b2da;
-    color: #f0d43a;
+    color: black;
     font-size: 20px;
+    resize: none;
+    height: 200px;
     font-family: 'Oswald', sans-serif;
 }
 /* Reset style for HTML element on active to have no border*/
@@ -95,7 +122,7 @@ button:focus {
 }
 /* Style for Placeholder Text*/
 ::placeholder { /* Firefox, Chrome, Opera */ 
-    color: #f0d43a; 
+    color: rgb(181, 181, 181); 
     font-family: 'Oswald', sans-serif;
 
 } 
