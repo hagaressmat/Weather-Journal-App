@@ -2,7 +2,7 @@
 const APIKey = "&appid=0748243122b8664a6a54e4298eea20cd&units=imperial";
 
 
-const url = "https://api.openweathermap.org/data/2.5/forecast?q=";
+const url = "https://api.openweathermap.org/data/2.5/forecast?id=";
 
 // Create a new date instance dynamically with JS
 let date = new Date();
