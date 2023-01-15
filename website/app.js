@@ -6,25 +6,25 @@ const url = "https://api.openweathermap.org/data/2.5/forecast?id=";
 
 // Create a new date instance dynamically with JS
 let date = new Date();
-let newDate = date.getDate()+'.'+(date.getMonth()+1)+'.'+ date.getFullYear();
+let nowDate = date.getDate()+'.'+(date.getMonth()+1)+'.'+ date.getFullYear();
 
 
 
 
 // event listener click for the element with the id "generate" 
 let button = document.getElementById("generate");
-button.addEventListener("click", performAction);
+button.addEventListener("click", APIFun);
 
-function performAction(e){
+function APIFun(e){
     let zipCode = document.getElementById('zip').value;
     let userFeelings = document.getElementById('feelings').value;
     console.log(zipCode);
     console.log(APIKey);
     console.log(userFeelings);
     sendPostData(url,zipCode)
-    .then(function(data){
-        console.log(data);
-        postData("add" , {date:newDate , temperature:data.list[0].main.temp , userFeelings:userFeelings })
+    .then(function(dateFromAPI){
+        console.log(dateFromAPI);
+        postDataToServer("/add" , {date:nowDate , temperature:dateFromAPI.list[0].main.temp , userFeelings:userFeelings })
         UIView();
     })
 };
@@ -36,9 +36,9 @@ function performAction(e){
 const sendPostData = async (url,zipCode )=>{
     const response = await fetch(url+zipCode+APIKey)
     try {
-        const data = await response.json();
-        console.log(data)
-        return data;
+        const dateFromAPI = await response.json();
+        console.log(dateFromAPI)
+        return dateFromAPI;
         }  catch(error) {
          console.log("error", error);
         // appropriately handle the error
@@ -48,8 +48,8 @@ const sendPostData = async (url,zipCode )=>{
 
 
 
-// Async GET
-const postData = async ( url = '', data = {})=>{
+// Async POST
+const postDataToServer = async ( url = '', dataToServer = {})=>{
 
     const response = await fetch(url, {
     method: 'POST', 
@@ -57,12 +57,12 @@ const postData = async ( url = '', data = {})=>{
     headers: {
         'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data), // body data type must match "Content-Type" header        
+    body: JSON.stringify(dataToServer), // body data type must match "Content-Type" header        
   });
-    console.log(data);
+    console.log(dataToServer);
     try {
-      const newData = await response.json();
-      return newData;
+      const newDataToServer = await response.json();
+      return newDataToServer;
     }catch(error) {
     console.log("error", error);
     }
@@ -76,12 +76,15 @@ const postData = async ( url = '', data = {})=>{
 
 
   const UIView = async () => {
-    const request = await fetch('/all');
+    const callBackData = await fetch('/all');
     try{
-      const element = await request.json();
-      document.getElementById('date').innerHTML = `Date :  ${element[0].date}`;
-      document.getElementById('temp').innerHTML = `Temp :  ${element[0].temperature}`;
-      document.getElementById('content').innerHTML = `Feelings : ${element[0].userFeelings}`;
+      const element = await callBackData.json();
+      dateFromServer = document.getElementById('date');
+      tempFromServer = document.getElementById('temp');
+      FeelingsFromServer = document.getElementById('content');
+      dateFromServer.innerHTML = `Date :  ${element[0].date}`;
+      tempFromServer.innerHTML = `Temp :  ${element[0].temperature}`;
+      FeelingsFromServer.innerHTML = `Feelings : ${element[0].userFeelings}`;
   
     }catch(error){
       console.log("error", error);
