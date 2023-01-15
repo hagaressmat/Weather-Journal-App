@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-const projectData = [];
+const projectData = {};
 
 // Require Express to run server and routes
 const express = require('express');
@@ -28,7 +28,6 @@ const port = 5000;
 const hostname = "127.0.0.1";
 const server = app.listen(port,hostname, listening);
  function listening(){
-    console.log(server);
     console.log(`Server running at http://${hostname}:${port}/`);
   };
 
@@ -51,8 +50,7 @@ function callBack(request , response){
     temperature : request.body.temperature,
     date : request.body.date,
     userFeelings : request.body.userFeelings}
-
-  projectData.push(element);
+  Object.assign(projectData,element);
   response.send(projectData);
   response.end();
 }

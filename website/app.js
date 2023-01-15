@@ -82,9 +82,9 @@ const postDataToServer = async ( url = '', dataToServer = {})=>{
       dateFromServer = document.getElementById('date');
       tempFromServer = document.getElementById('temp');
       FeelingsFromServer = document.getElementById('content');
-      dateFromServer.innerHTML = `Date :  ${element[0].date}`;
-      tempFromServer.innerHTML = `Temp :  ${Math.round(element[0].temperature)} degrees`;
-      FeelingsFromServer.innerHTML = `Feelings : ${element[0].userFeelings}`;
+      dateFromServer.innerHTML = `Date :  ${element.date}`;
+      tempFromServer.innerHTML = `Temp :  ${Math.round(element.temperature)} degrees`;
+      FeelingsFromServer.innerHTML = `Feelings : ${element.userFeelings}`;
     }catch(error){
       console.log("error", error);
     }
