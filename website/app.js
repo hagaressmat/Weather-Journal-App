@@ -1,5 +1,5 @@
 /* Global Variables */
-const APIKey = "&appid=0748243122b8664a6a54e4298eea20cd";
+const APIKey = "&appid=0748243122b8664a6a54e4298eea20cd&units=imperial";
 
 
 const url = "https://api.openweathermap.org/data/2.5/forecast?id=";
@@ -83,9 +83,8 @@ const postDataToServer = async ( url = '', dataToServer = {})=>{
       tempFromServer = document.getElementById('temp');
       FeelingsFromServer = document.getElementById('content');
       dateFromServer.innerHTML = `Date :  ${element[0].date}`;
-      tempFromServer.innerHTML = `Temp :  ${element[0].temperature}`;
+      tempFromServer.innerHTML = `Temp :  ${Math.round(element[0].temperature)} degrees`;
       FeelingsFromServer.innerHTML = `Feelings : ${element[0].userFeelings}`;
-  
     }catch(error){
       console.log("error", error);
     }
